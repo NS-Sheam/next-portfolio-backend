@@ -1,0 +1,11 @@
+import express from "express";
+import { AuthControllers } from "./auth.controller.js";
+import auth from "../../middlewares/auth.js";
+import { USER_ROLE } from "../User/user.const.js";
+const router = express.Router();
+router.post("/login", AuthControllers.login);
+router.post("/refresh-token", AuthControllers.refreshToken);
+router.post("/change-password", auth(USER_ROLE.ADMIN, USER_ROLE.CUSTOMER), AuthControllers.changePassword);
+router.post("/forget-password", AuthControllers.forgetPassword);
+router.post("/reset-password", AuthControllers.resetPassword);
+export const AuthRoutes = router;

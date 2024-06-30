@@ -1,0 +1,16 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.AchievementRoutes = void 0;
+var _express = _interopRequireDefault(require("express"));
+var _AchievementController = require("./Achievement.controller.js");
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+const router = _express.default.Router();
+router.post("/", _AchievementController.AchievementControllers.createAchievement);
+router.get("/", _AchievementController.AchievementControllers.getAllAchievement);
+router.get("/:id", _AchievementController.AchievementControllers.getSingleAchievement);
+router.patch("/:id", _AchievementController.AchievementControllers.updateAchievement);
+router.delete("/:id", _AchievementController.AchievementControllers.deleteAchievement);
+const AchievementRoutes = exports.AchievementRoutes = router;
