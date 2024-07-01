@@ -1,15 +1,10 @@
-
 import catchAsync from "../../utils/catchAsync.js";
-import { 
-  AchievementServices
- } from "./Achievement.service.js";
+import { AchievementServices } from "./Achievement.service.js";
 import sendResponse from "../../utils/sendResponse.js";
-
 
 // Create Achievement
 const createAchievement = catchAsync(async (req, res) => {
-  const result = await 
-  AchievementServices.createAchievement(req.body);
+  const result = await AchievementServices.createAchievement(req.file, req.body);
   sendResponse(res, {
     status: 201,
     success: true,
@@ -20,8 +15,7 @@ const createAchievement = catchAsync(async (req, res) => {
 
 // Get all Achievement
 const getAllAchievement = catchAsync(async (req, res) => {
-  const result = await 
-  AchievementServices.getAllAchievement(req.query);
+  const result = await AchievementServices.getAllAchievement(req.query);
   sendResponse(res, {
     status: 200,
     success: true,
@@ -34,8 +28,7 @@ const getAllAchievement = catchAsync(async (req, res) => {
 // Get single Achievement
 const getSingleAchievement = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await 
-  AchievementServices.getSingleAchievement(id);
+  const result = await AchievementServices.getSingleAchievement(id);
   sendResponse(res, {
     status: 200,
     success: true,
@@ -47,8 +40,17 @@ const getSingleAchievement = catchAsync(async (req, res) => {
 // Update Achievement
 const updateAchievement = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await 
-  AchievementServices.updateAchievement(id, req.body);
+  const result = await AchievementServices.updateAchievement(id, req.file, req.body);
+  sendResponse(res, {
+    status: 200,
+    success: true,
+    message: "Achievement updated successfully",
+    data: result,
+  });
+});
+const updateAchievementPosition = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await AchievementServices.updateAchievementPosition(id, req.body);
   sendResponse(res, {
     status: 200,
     success: true,
@@ -60,8 +62,7 @@ const updateAchievement = catchAsync(async (req, res) => {
 // Delete Achievement
 const deleteAchievement = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await 
-  AchievementServices.deleteAchievement(id);
+  const result = await AchievementServices.deleteAchievement(id);
   sendResponse(res, {
     status: 200,
     success: true,
@@ -70,11 +71,11 @@ const deleteAchievement = catchAsync(async (req, res) => {
   });
 });
 
-export const AchievementControllers ={
+export const AchievementControllers = {
   createAchievement,
   getAllAchievement,
   getSingleAchievement,
   updateAchievement,
-  deleteAchievement
-
-}
+  updateAchievementPosition,
+  deleteAchievement,
+};

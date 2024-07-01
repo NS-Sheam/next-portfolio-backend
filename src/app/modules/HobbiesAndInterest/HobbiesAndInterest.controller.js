@@ -1,15 +1,10 @@
-
 import catchAsync from "../../utils/catchAsync.js";
-import { 
-  HobbiesAndInterestServices
- } from "./HobbiesAndInterest.service.js";
+import { HobbiesAndInterestServices } from "./HobbiesAndInterest.service.js";
 import sendResponse from "../../utils/sendResponse.js";
-
 
 // Create HobbiesAndInterest
 const createHobbiesAndInterest = catchAsync(async (req, res) => {
-  const result = await 
-  HobbiesAndInterestServices.createHobbiesAndInterest(req.body);
+  const result = await HobbiesAndInterestServices.createHobbiesAndInterest(req.body);
   sendResponse(res, {
     status: 201,
     success: true,
@@ -20,8 +15,7 @@ const createHobbiesAndInterest = catchAsync(async (req, res) => {
 
 // Get all HobbiesAndInterest
 const getAllHobbiesAndInterest = catchAsync(async (req, res) => {
-  const result = await 
-  HobbiesAndInterestServices.getAllHobbiesAndInterest(req.query);
+  const result = await HobbiesAndInterestServices.getAllHobbiesAndInterest(req.query);
   sendResponse(res, {
     status: 200,
     success: true,
@@ -34,8 +28,7 @@ const getAllHobbiesAndInterest = catchAsync(async (req, res) => {
 // Get single HobbiesAndInterest
 const getSingleHobbiesAndInterest = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await 
-  HobbiesAndInterestServices.getSingleHobbiesAndInterest(id);
+  const result = await HobbiesAndInterestServices.getSingleHobbiesAndInterest(id);
   sendResponse(res, {
     status: 200,
     success: true,
@@ -47,8 +40,18 @@ const getSingleHobbiesAndInterest = catchAsync(async (req, res) => {
 // Update HobbiesAndInterest
 const updateHobbiesAndInterest = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await 
-  HobbiesAndInterestServices.updateHobbiesAndInterest(id, req.body);
+  const result = await HobbiesAndInterestServices.updateHobbiesAndInterest(id, req.body);
+  sendResponse(res, {
+    status: 200,
+    success: true,
+    message: "HobbiesAndInterest updated successfully",
+    data: result,
+  });
+});
+
+const updateHobbiesAndInterestPosition = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await HobbiesAndInterestServices.updateHobbiesAndInterestPosition(id, req.body);
   sendResponse(res, {
     status: 200,
     success: true,
@@ -60,8 +63,7 @@ const updateHobbiesAndInterest = catchAsync(async (req, res) => {
 // Delete HobbiesAndInterest
 const deleteHobbiesAndInterest = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await 
-  HobbiesAndInterestServices.deleteHobbiesAndInterest(id);
+  const result = await HobbiesAndInterestServices.deleteHobbiesAndInterest(id);
   sendResponse(res, {
     status: 200,
     success: true,
@@ -70,11 +72,11 @@ const deleteHobbiesAndInterest = catchAsync(async (req, res) => {
   });
 });
 
-export const HobbiesAndInterestControllers ={
+export const HobbiesAndInterestControllers = {
   createHobbiesAndInterest,
   getAllHobbiesAndInterest,
   getSingleHobbiesAndInterest,
   updateHobbiesAndInterest,
-  deleteHobbiesAndInterest
-
-}
+  updateHobbiesAndInterestPosition,
+  deleteHobbiesAndInterest,
+};

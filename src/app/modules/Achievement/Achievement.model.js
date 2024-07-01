@@ -16,6 +16,14 @@ const AchievementSchema = new Schema(
       type: Date,
       required: true,
     },
+    certificate: {
+      type: String,
+    },
+
+    position: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,

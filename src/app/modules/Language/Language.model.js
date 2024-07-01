@@ -12,6 +12,10 @@ const LanguageSchema = new Schema(
       type: String,
       required: true,
     },
+    position: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,

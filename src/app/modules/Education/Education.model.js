@@ -18,6 +18,10 @@ const EducationSchema = new Schema(
     endDate: {
       type: Date,
     },
+    position: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,

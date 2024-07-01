@@ -1,15 +1,10 @@
-
 import catchAsync from "../../utils/catchAsync.js";
-import { 
-  SkillServices
- } from "./Skill.service.js";
+import { SkillServices } from "./Skill.service.js";
 import sendResponse from "../../utils/sendResponse.js";
-
 
 // Create Skill
 const createSkill = catchAsync(async (req, res) => {
-  const result = await 
-  SkillServices.createSkill(req.body);
+  const result = await SkillServices.createSkill(req.file, req.body);
   sendResponse(res, {
     status: 201,
     success: true,
@@ -20,8 +15,7 @@ const createSkill = catchAsync(async (req, res) => {
 
 // Get all Skill
 const getAllSkill = catchAsync(async (req, res) => {
-  const result = await 
-  SkillServices.getAllSkill(req.query);
+  const result = await SkillServices.getAllSkill(req.query);
   sendResponse(res, {
     status: 200,
     success: true,
@@ -34,8 +28,7 @@ const getAllSkill = catchAsync(async (req, res) => {
 // Get single Skill
 const getSingleSkill = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await 
-  SkillServices.getSingleSkill(id);
+  const result = await SkillServices.getSingleSkill(id);
   sendResponse(res, {
     status: 200,
     success: true,
@@ -47,8 +40,7 @@ const getSingleSkill = catchAsync(async (req, res) => {
 // Update Skill
 const updateSkill = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await 
-  SkillServices.updateSkill(id, req.body);
+  const result = await SkillServices.updateSkill(id, req.file, req.body);
   sendResponse(res, {
     status: 200,
     success: true,
@@ -60,8 +52,7 @@ const updateSkill = catchAsync(async (req, res) => {
 // Delete Skill
 const deleteSkill = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await 
-  SkillServices.deleteSkill(id);
+  const result = await SkillServices.deleteSkill(id);
   sendResponse(res, {
     status: 200,
     success: true,
@@ -70,11 +61,10 @@ const deleteSkill = catchAsync(async (req, res) => {
   });
 });
 
-export const SkillControllers ={
+export const SkillControllers = {
   createSkill,
   getAllSkill,
   getSingleSkill,
   updateSkill,
-  deleteSkill
-
-}
+  deleteSkill,
+};

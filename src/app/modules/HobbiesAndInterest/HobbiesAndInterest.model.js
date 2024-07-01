@@ -11,6 +11,10 @@ const HobbiesAndInterestSchema = new Schema(
     passionLevel: {
       type: String,
     },
+    position: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,
