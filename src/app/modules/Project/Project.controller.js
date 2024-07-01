@@ -48,6 +48,16 @@ const updateProject = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const updateProjectPosition = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await ProjectServices.updateProjectPosition(id, req.body);
+  sendResponse(res, {
+    status: 200,
+    success: true,
+    message: "Project updated successfully",
+    data: result,
+  });
+});
 
 // Delete Project
 const deleteProject = catchAsync(async (req, res) => {
@@ -66,5 +76,6 @@ export const ProjectControllers = {
   getAllProject,
   getSingleProject,
   updateProject,
+  updateProjectPosition,
   deleteProject,
 };

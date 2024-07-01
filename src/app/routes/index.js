@@ -56,7 +56,7 @@ const moduleRoutes = [
     route: LanguageRoutes,
   },
   {
-    path: "/personalInfo",
+    path: "/personal-info",
     route: PersonalInfoRoutes,
   },
   {
@@ -67,15 +67,3 @@ const moduleRoutes = [
 moduleRoutes.forEach((route) => router.use(route?.path, route?.route));
 
 export default router;
-//  achievements: {
-//       type: [Schema.Types.ObjectId],
-//       ref: "Achievement",
-//     },
-//     hobbiesAndInterests: {
-//       type: [Schema.Types.ObjectId],
-//       ref: "HobbiesAndInterest",
-//     },
-//     languages: {
-//       type: [Schema.Types.ObjectId],
-//       ref: "Language",
-//     },

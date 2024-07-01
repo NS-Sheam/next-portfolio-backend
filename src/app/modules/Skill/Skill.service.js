@@ -1,5 +1,6 @@
 import { Skill } from "./Skill.model.js";
 import QueryBuilder from "../../helpers/QueryBuilder.js";
+import { sendImageToCloudinary } from "../../utils/sendImageToCloudinary.js";
 
 // Declare the Services
 

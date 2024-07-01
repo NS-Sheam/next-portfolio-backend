@@ -28,6 +28,13 @@ const ProjectSchema = new Schema(
     image: {
       type: String, // URL of the image
     },
+    basedOn: {
+      type: [String],
+    },
+    position: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,

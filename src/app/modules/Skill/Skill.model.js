@@ -12,6 +12,9 @@ const SkillSchema = new Schema(
       type: String,
       required: true,
     },
+    technology: {
+      type: String,
+    },
     position: {
       type: Number,
       required: true,
