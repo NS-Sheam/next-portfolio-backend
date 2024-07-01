@@ -12,5 +12,6 @@ router.post("/", _HobbiesAndInterestController.HobbiesAndInterestControllers.cre
 router.get("/", _HobbiesAndInterestController.HobbiesAndInterestControllers.getAllHobbiesAndInterest);
 router.get("/:id", _HobbiesAndInterestController.HobbiesAndInterestControllers.getSingleHobbiesAndInterest);
 router.patch("/:id", _HobbiesAndInterestController.HobbiesAndInterestControllers.updateHobbiesAndInterest);
+router.patch("/:id/position", _HobbiesAndInterestController.HobbiesAndInterestControllers.updateHobbiesAndInterestPosition);
 router.delete("/:id", _HobbiesAndInterestController.HobbiesAndInterestControllers.deleteHobbiesAndInterest);
 const HobbiesAndInterestRoutes = exports.HobbiesAndInterestRoutes = router;

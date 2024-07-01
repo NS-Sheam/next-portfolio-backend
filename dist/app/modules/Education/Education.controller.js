@@ -58,6 +58,18 @@ const updateEducation = (0, _catchAsync.default)(async (req, res) => {
     data: result
   });
 });
+const updateEducationPosition = (0, _catchAsync.default)(async (req, res) => {
+  const {
+    id
+  } = req.params;
+  const result = await _EducationService.EducationServices.updateEducationPosition(id, req.body);
+  (0, _sendResponse.default)(res, {
+    status: 200,
+    success: true,
+    message: "Education updated successfully",
+    data: result
+  });
+});
 
 // Delete Education
 const deleteEducation = (0, _catchAsync.default)(async (req, res) => {
@@ -77,5 +89,6 @@ const EducationControllers = exports.EducationControllers = {
   getAllEducation,
   getSingleEducation,
   updateEducation,
+  updateEducationPosition,
   deleteEducation
 };

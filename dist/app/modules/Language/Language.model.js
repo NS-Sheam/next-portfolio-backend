@@ -15,6 +15,10 @@ const LanguageSchema = new _mongoose.Schema({
   level: {
     type: String,
     required: true
+  },
+  position: {
+    type: Number,
+    required: true
   }
 }, {
   timestamps: true

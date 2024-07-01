@@ -15,6 +15,16 @@ const SkillSchema = new _mongoose.Schema({
   proficiency: {
     type: String,
     required: true
+  },
+  technology: {
+    type: String
+  },
+  position: {
+    type: Number,
+    required: true
+  },
+  image: {
+    type: String
   }
 }, {
   timestamps: true

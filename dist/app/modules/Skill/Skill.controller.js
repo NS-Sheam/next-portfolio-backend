@@ -10,7 +10,7 @@ var _sendResponse = _interopRequireDefault(require("../../utils/sendResponse.js"
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 // Create Skill
 const createSkill = (0, _catchAsync.default)(async (req, res) => {
-  const result = await _SkillService.SkillServices.createSkill(req.body);
+  const result = await _SkillService.SkillServices.createSkill(req.file, req.body);
   (0, _sendResponse.default)(res, {
     status: 201,
     success: true,
@@ -50,7 +50,7 @@ const updateSkill = (0, _catchAsync.default)(async (req, res) => {
   const {
     id
   } = req.params;
-  const result = await _SkillService.SkillServices.updateSkill(id, req.body);
+  const result = await _SkillService.SkillServices.updateSkill(id, req.file, req.body);
   (0, _sendResponse.default)(res, {
     status: 200,
     success: true,

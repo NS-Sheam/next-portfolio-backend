@@ -22,6 +22,10 @@ const EducationSchema = new _mongoose.Schema(
   },
   endDate: {
     type: Date
+  },
+  position: {
+    type: Number,
+    required: true
   }
 }, {
   timestamps: true

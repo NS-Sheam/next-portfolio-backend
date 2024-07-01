@@ -58,6 +58,18 @@ const updateHobbiesAndInterest = (0, _catchAsync.default)(async (req, res) => {
     data: result
   });
 });
+const updateHobbiesAndInterestPosition = (0, _catchAsync.default)(async (req, res) => {
+  const {
+    id
+  } = req.params;
+  const result = await _HobbiesAndInterestService.HobbiesAndInterestServices.updateHobbiesAndInterestPosition(id, req.body);
+  (0, _sendResponse.default)(res, {
+    status: 200,
+    success: true,
+    message: "HobbiesAndInterest updated successfully",
+    data: result
+  });
+});
 
 // Delete HobbiesAndInterest
 const deleteHobbiesAndInterest = (0, _catchAsync.default)(async (req, res) => {
@@ -77,5 +89,6 @@ const HobbiesAndInterestControllers = exports.HobbiesAndInterestControllers = {
   getAllHobbiesAndInterest,
   getSingleHobbiesAndInterest,
   updateHobbiesAndInterest,
+  updateHobbiesAndInterestPosition,
   deleteHobbiesAndInterest
 };

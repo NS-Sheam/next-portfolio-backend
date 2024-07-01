@@ -19,6 +19,13 @@ const AchievementSchema = new _mongoose.Schema({
   date: {
     type: Date,
     required: true
+  },
+  certificate: {
+    type: String
+  },
+  position: {
+    type: Number,
+    required: true
   }
 }, {
   timestamps: true

@@ -10,7 +10,7 @@ var _sendResponse = _interopRequireDefault(require("../../utils/sendResponse.js"
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 // Create Achievement
 const createAchievement = (0, _catchAsync.default)(async (req, res) => {
-  const result = await _AchievementService.AchievementServices.createAchievement(req.body);
+  const result = await _AchievementService.AchievementServices.createAchievement(req.file, req.body);
   (0, _sendResponse.default)(res, {
     status: 201,
     success: true,
@@ -50,7 +50,19 @@ const updateAchievement = (0, _catchAsync.default)(async (req, res) => {
   const {
     id
   } = req.params;
-  const result = await _AchievementService.AchievementServices.updateAchievement(id, req.body);
+  const result = await _AchievementService.AchievementServices.updateAchievement(id, req.file, req.body);
+  (0, _sendResponse.default)(res, {
+    status: 200,
+    success: true,
+    message: "Achievement updated successfully",
+    data: result
+  });
+});
+const updateAchievementPosition = (0, _catchAsync.default)(async (req, res) => {
+  const {
+    id
+  } = req.params;
+  const result = await _AchievementService.AchievementServices.updateAchievementPosition(id, req.body);
   (0, _sendResponse.default)(res, {
     status: 200,
     success: true,
@@ -77,5 +89,6 @@ const AchievementControllers = exports.AchievementControllers = {
   getAllAchievement,
   getSingleAchievement,
   updateAchievement,
+  updateAchievementPosition,
   deleteAchievement
 };

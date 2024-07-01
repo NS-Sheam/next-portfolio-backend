@@ -12,5 +12,6 @@ router.post("/", _EducationController.EducationControllers.createEducation);
 router.get("/", _EducationController.EducationControllers.getAllEducation);
 router.get("/:id", _EducationController.EducationControllers.getSingleEducation);
 router.patch("/:id", _EducationController.EducationControllers.updateEducation);
+router.patch("/:id/position", _EducationController.EducationControllers.updateEducationPosition);
 router.delete("/:id", _EducationController.EducationControllers.deleteEducation);
 const EducationRoutes = exports.EducationRoutes = router;

@@ -7,9 +7,11 @@ exports.EducationServices = void 0;
 var _EducationModel = require("./Education.model.js");
 var _QueryBuilder = _interopRequireDefault(require("../../helpers/QueryBuilder.js"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-// Declare the Services 
+// Declare the Services
 
 const createEducation = async payload => {
+  const totalDocuments = await _EducationModel.Education.countDocuments();
+  payload.position = totalDocuments + 1;
   const result = await _EducationModel.Education.create(payload);
   return result;
 };
@@ -34,6 +36,69 @@ const updateEducation = async (id, payload) => {
   });
   return result;
 };
+const updateEducationPosition = async (id, payload) => {
+  const {
+    position: newPosition
+  } = payload;
+  const isEducationExist = await _EducationModel.Education.findById(id);
+  if (!isEducationExist) {
+    throw new Error("Education not found");
+  }
+  const currentEducationPosition = isEducationExist.position;
+  const session = await mongoose.startSession();
+  try {
+    await session.startTransaction();
+    const updatedEducation = await _EducationModel.Education.findByIdAndUpdate(id, {
+      position: newPosition
+    }, {
+      new: true,
+      session
+    });
+    if (!updatedEducation) {
+      throw new Error("Education not found");
+    }
+    if (currentEducationPosition < newPosition) {
+      await _EducationModel.Education.updateMany({
+        _id: {
+          $ne: id
+        },
+        position: {
+          $gt: currentEducationPosition,
+          $lte: newPosition
+        }
+      }, {
+        $inc: {
+          position: -1
+        }
+      }, {
+        session
+      });
+    } else if (currentEducationPosition > newPosition) {
+      await _EducationModel.Education.updateMany({
+        _id: {
+          $ne: id
+        },
+        position: {
+          $gte: newPosition,
+          $lt: currentEducationPosition
+        }
+      }, {
+        $inc: {
+          position: 1
+        }
+      }, {
+        session
+      });
+    }
+    await session.commitTransaction();
+    await session.endSession();
+    return updatedEducation;
+  } catch (error) {
+    await session.abortTransaction();
+    await session.endSession();
+    throw error;
+  }
+};
 const deleteEducation = async id => {
   const result = await _EducationModel.Education.findByIdAndDelete(id);
   return result;
@@ -43,5 +108,6 @@ const EducationServices = exports.EducationServices = {
   getAllEducation,
   getSingleEducation,
   updateEducation,
+  updateEducationPosition,
   deleteEducation
 };

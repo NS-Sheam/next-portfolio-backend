@@ -14,6 +14,10 @@ const HobbiesAndInterestSchema = new _mongoose.Schema({
   },
   passionLevel: {
     type: String
+  },
+  position: {
+    type: Number,
+    required: true
   }
 }, {
   timestamps: true
