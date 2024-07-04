@@ -4,13 +4,19 @@ import { Schema, model } from "mongoose";
 const ExperienceSchema = new Schema(
   // Define the schema fields
   {
-    title: {
+    designation: {
       type: String,
       required: true,
     },
     company: {
       type: String,
       required: true,
+    },
+    location: {
+      type: String,
+    },
+    description: {
+      type: String,
     },
     startDate: {
       type: Date,
@@ -19,7 +25,10 @@ const ExperienceSchema = new Schema(
     endDate: {
       type: Date,
     },
-    
+    isCurrent: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

@@ -4,6 +4,8 @@ import QueryBuilder from "../../helpers/QueryBuilder.js";
 // Declare the Services
 
 const createHobbiesAndInterest = async (payload) => {
+  const totalDocuments = await HobbiesAndInterest.countDocuments();
+  payload.position = totalDocuments + 1;
   const result = await HobbiesAndInterest.create(payload);
   return result;
 };

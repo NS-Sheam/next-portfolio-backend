@@ -1,13 +1,13 @@
 import { Achievement } from "./Achievement.model.js";
 import QueryBuilder from "../../helpers/QueryBuilder.js";
-import { sendImageToCloudinary } from "../../utils/sendImageToCloudinary.js";
+import { sendFileToCloudinary } from "../../utils/sendFileToCloudinary.js";
 
 // Declare the Services
 
 const createAchievement = async (file, payload) => {
   if (file) {
     const certificateName = `${payload.title}-${Date.now()}`;
-    const { secure_url } = await sendImageToCloudinary(certificateName, file.path);
+    const { secure_url } = await sendFileToCloudinary(certificateName, file.path);
     payload.certificate = secure_url;
   }
   const totalDocuments = await Achievement.countDocuments();
@@ -39,7 +39,7 @@ const getSingleAchievement = async (id) => {
 const updateAchievement = async (id, file, payload) => {
   if (file) {
     const certificateName = `${payload.title}-${Date.now()}`;
-    const { secure_url } = await sendImageToCloudinary(certificateName, file.path);
+    const { secure_url } = await sendFileToCloudinary(certificateName, file.path);
     payload.certificate = secure_url;
   }
   const result = await Achievement.findByIdAndUpdate(id, payload, { new: true, runValidators: true });

@@ -1,13 +1,13 @@
 import { Skill } from "./Skill.model.js";
 import QueryBuilder from "../../helpers/QueryBuilder.js";
-import { sendImageToCloudinary } from "../../utils/sendImageToCloudinary.js";
+import { sendFileToCloudinary } from "../../utils/sendFileToCloudinary.js";
 
 // Declare the Services
 
 const createSkill = async (file, payload) => {
   if (file) {
     const imageName = `${payload.title}-${Date.now()}`;
-    const { secure_url } = await sendImageToCloudinary(imageName, file.path);
+    const { secure_url } = await sendFileToCloudinary(imageName, file.path);
     payload.image = secure_url;
   }
   const totalDocuments = await Skill.countDocuments();
@@ -39,7 +39,7 @@ const getSingleSkill = async (id) => {
 const updateSkill = async (id, file, payload) => {
   if (file) {
     const imageName = `${payload.title}-${Date.now()}`;
-    const { secure_url } = await sendImageToCloudinary(imageName, file.path);
+    const { secure_url } = await sendFileToCloudinary(imageName, file.path);
     payload.image = secure_url;
   }
   const result = await Skill.findByIdAndUpdate(id, payload, { new: true, runValidators: true });

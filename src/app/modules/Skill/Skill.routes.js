@@ -1,7 +1,7 @@
 import express from "express";
 
 import { SkillControllers } from "./Skill.controller.js";
-import { upload } from "../../utils/sendImageToCloudinary.js";
+import { upload } from "../../utils/sendFileToCloudinary.js";
 import textToJsonPerser from "../../middlewares/textToJsonParser.js";
 
 const router = express.Router();

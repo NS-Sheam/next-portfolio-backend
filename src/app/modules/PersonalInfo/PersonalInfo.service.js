@@ -1,13 +1,13 @@
 import { PersonalInfo } from "./PersonalInfo.model.js";
 import QueryBuilder from "../../helpers/QueryBuilder.js";
-import { sendImageToCloudinary } from "../../utils/sendImageToCloudinary.js";
+import { sendFileToCloudinary } from "../../utils/sendFileToCloudinary.js";
 
 // Declare the Services
 
 const createPersonalInfo = async (file, payload) => {
   if (file) {
     const imageName = `${payload.name}-${Date.now()}`;
-    const { secure_url } = await sendImageToCloudinary(imageName, file.path);
+    const { secure_url } = await sendFileToCloudinary(imageName, file.path);
     payload.image = secure_url;
   }
   const result = await PersonalInfo.create(payload);
@@ -37,7 +37,7 @@ const getSinglePersonalInfo = async (id) => {
 const updatePersonalInfo = async (id, file, payload) => {
   if (file) {
     const imageName = `${payload.name}-${Date.now()}`;
-    const { secure_url } = await sendImageToCloudinary(imageName, file.path);
+    const { secure_url } = await sendFileToCloudinary(imageName, file.path);
     payload.image = secure_url;
   }
   const result = await PersonalInfo.findByIdAndUpdate(id, payload, { new: true, runValidators: true });

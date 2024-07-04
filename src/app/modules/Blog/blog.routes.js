@@ -3,7 +3,7 @@ import express from "express";
 import auth from "../../middlewares/auth.js";
 import { USER_ROLE } from "../User/user.const.js";
 import { BlogsControllers } from "./blog.controller.js";
-import { upload } from "../../utils/sendImageToCloudinary.js";
+import { upload } from "../../utils/sendFileToCloudinary.js";
 import textToJsonPerser from "../../middlewares/textToJsonParser.js";
 
 const router = express.Router();

@@ -18,9 +18,12 @@ const EducationSchema = new Schema(
     endDate: {
       type: Date,
     },
-    position: {
-      type: Number,
-      required: true,
+    result: {
+      type: String,
+    },
+    isCurrent: {
+      type: Boolean,
+      default: false,
     },
   },
   {

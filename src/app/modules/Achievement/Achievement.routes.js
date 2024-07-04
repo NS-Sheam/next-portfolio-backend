@@ -1,7 +1,7 @@
 import express from "express";
 
 import { AchievementControllers } from "./Achievement.controller.js";
-import { upload } from "../../utils/sendImageToCloudinary.js";
+import { upload } from "../../utils/sendFileToCloudinary.js";
 import textToJsonPerser from "../../middlewares/textToJsonParser.js";
 
 const router = express.Router();

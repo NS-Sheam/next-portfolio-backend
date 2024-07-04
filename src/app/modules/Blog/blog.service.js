@@ -1,5 +1,5 @@
 import QueryBuilder from "../../helpers/QueryBuilder.js";
-import { sendImageToCloudinary } from "../../utils/sendImageToCloudinary.js";
+import { sendFileToCloudinary } from "../../utils/sendFileToCloudinary.js";
 
 import { Admin } from "../Admin/admin.model.js";
 import { blogSearchableFields } from "./blog.const.js";
@@ -10,7 +10,7 @@ const createBlog = async (file, user, payload) => {
   payload.author = authorInfo.id;
   if (file) {
     const imageName = `${payload?.title}-${Date.now()}`;
-    const { secure_url } = await sendImageToCloudinary(imageName, file.path);
+    const { secure_url } = await sendFileToCloudinary(imageName, file.path);
     payload.image = secure_url;
   }
   const result = await Blog.create(payload);
@@ -42,7 +42,7 @@ const updateBlog = async (id, file, payload) => {
   if (file) {
     const imageName = `${payload?.title || isBlogExist?.title}-${Date.now()}`;
     const imagePath = file.path;
-    const { secure_url } = await sendImageToCloudinary(imageName, imagePath);
+    const { secure_url } = await sendFileToCloudinary(imageName, imagePath);
     payload.image = secure_url;
   }
   const result = await Blog.findByIdAndUpdate(id, payload, {
