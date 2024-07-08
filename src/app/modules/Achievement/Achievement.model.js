@@ -14,7 +14,6 @@ const AchievementSchema = new Schema(
     },
     date: {
       type: Date,
-      required: true,
     },
     certificate: {
       type: String,

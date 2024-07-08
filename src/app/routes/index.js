@@ -48,7 +48,7 @@ const moduleRoutes = [
     route: AchievementRoutes,
   },
   {
-    path: "/hobbies-and-interests",
+    path: "/hobbies-and-interest",
     route: HobbiesAndInterestRoutes,
   },
   {

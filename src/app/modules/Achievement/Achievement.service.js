@@ -10,6 +10,7 @@ const createAchievement = async (file, payload) => {
     const { secure_url } = await sendFileToCloudinary(certificateName, file.path);
     payload.certificate = secure_url;
   }
+
   const totalDocuments = await Achievement.countDocuments();
   payload.position = totalDocuments + 1;
   const result = await Achievement.create(payload);
