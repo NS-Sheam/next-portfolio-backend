@@ -65,11 +65,6 @@ const getMe = async (user) => {
       path: "user",
       select: "-password",
     });
-  } else if (userInfo.role === "customer") {
-    result = await Customer.findOne({ user: user.id }).populate({
-      path: "user",
-      select: "-password",
-    });
   } else {
     throw new Error("User not found");
   }

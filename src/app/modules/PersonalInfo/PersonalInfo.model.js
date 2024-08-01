@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 // Declare the Schema of the Mongo model
-const PersonalInfoSchema = new Schema(
+export const personalInfoSchema = new Schema(
   {
     // Define the schema fields
     name: {
@@ -40,7 +40,24 @@ const PersonalInfoSchema = new Schema(
       type: String,
       required: true,
     },
-    image: {
+    bannerImage: {
+      type: String, // URL of the image
+    },
+    profileImage: {
+      type: String, // URL of the image
+      required: true,
+    },
+    secondaryProfileImage: {
+      type: String, // URL of the image
+    },
+    introTitles: {
+      type: [String],
+      required: true,
+    },
+    logo: {
+      type: String, // URL of the image
+    },
+    logoBW: {
       type: String, // URL of the image
     },
   },
@@ -50,4 +67,4 @@ const PersonalInfoSchema = new Schema(
 );
 
 // Export the model
-export const PersonalInfo = model("PersonalInfo", PersonalInfoSchema);
+export const PersonalInfo = model("PersonalInfo", personalInfoSchema);

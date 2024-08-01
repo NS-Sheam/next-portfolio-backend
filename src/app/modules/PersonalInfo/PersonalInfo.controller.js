@@ -1,10 +1,15 @@
+
 import catchAsync from "../../utils/catchAsync.js";
-import { PersonalInfoServices } from "./PersonalInfo.service.js";
+import { 
+  PersonalInfoServices
+ } from "./personalInfo.service.js";
 import sendResponse from "../../utils/sendResponse.js";
 
-// Create PersonalInfo
+
+// Create personalInfo
 const createPersonalInfo = catchAsync(async (req, res) => {
-  const result = await PersonalInfoServices.createPersonalInfo(req.file, req.body);
+  const result = await 
+  PersonalInfoServices.createPersonalInfo(req.body);
   sendResponse(res, {
     status: 201,
     success: true,
@@ -13,9 +18,10 @@ const createPersonalInfo = catchAsync(async (req, res) => {
   });
 });
 
-// Get all PersonalInfo
+// Get all personalInfo
 const getAllPersonalInfo = catchAsync(async (req, res) => {
-  const result = await PersonalInfoServices.getAllPersonalInfo(req.query);
+  const result = await 
+  PersonalInfoServices.getAllPersonalInfo(req.query);
   sendResponse(res, {
     status: 200,
     success: true,
@@ -25,10 +31,11 @@ const getAllPersonalInfo = catchAsync(async (req, res) => {
   });
 });
 
-// Get single PersonalInfo
+// Get single personalInfo
 const getSinglePersonalInfo = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await PersonalInfoServices.getSinglePersonalInfo(id);
+  const result = await 
+  PersonalInfoServices.getSinglePersonalInfo(id);
   sendResponse(res, {
     status: 200,
     success: true,
@@ -37,10 +44,11 @@ const getSinglePersonalInfo = catchAsync(async (req, res) => {
   });
 });
 
-// Update PersonalInfo
+// Update personalInfo
 const updatePersonalInfo = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await PersonalInfoServices.updatePersonalInfo(id, req.file, req.body);
+  const result = await 
+  PersonalInfoServices.updatePersonalInfo(id, req.body);
   sendResponse(res, {
     status: 200,
     success: true,
@@ -49,10 +57,11 @@ const updatePersonalInfo = catchAsync(async (req, res) => {
   });
 });
 
-// Delete PersonalInfo
+// Delete personalInfo
 const deletePersonalInfo = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await PersonalInfoServices.deletePersonalInfo(id);
+  const result = await 
+  PersonalInfoServices.deletePersonalInfo(id);
   sendResponse(res, {
     status: 200,
     success: true,
@@ -61,10 +70,11 @@ const deletePersonalInfo = catchAsync(async (req, res) => {
   });
 });
 
-export const PersonalInfoControllers = {
+export const PersonalInfoControllers ={
   createPersonalInfo,
   getAllPersonalInfo,
   getSinglePersonalInfo,
   updatePersonalInfo,
-  deletePersonalInfo,
-};
+  deletePersonalInfo
+
+}

@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import { personalInfoSchema } from "../PersonalInfo/PersonalInfo.model.js";
 
 const adminSchema = new Schema(
   {
@@ -19,6 +20,9 @@ const adminSchema = new Schema(
     isActive: {
       type: Boolean,
       default: true,
+    },
+    personalInfo: {
+      type: personalInfoSchema,
     },
   },
   {

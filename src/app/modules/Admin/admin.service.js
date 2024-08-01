@@ -4,6 +4,7 @@ import { USER_ROLE } from "../User/user.const.js";
 import { User } from "../User/user.model.js";
 import { adminSearchableFields } from "./admin.const.js";
 import { Admin } from "./admin.model.js";
+import { sendFileToCloudinary } from "../../utils/sendFileToCloudinary.js";
 
 const getAllAdmins = async (query) => {
   const adminQuery = new QueryBuilder(Admin.find().populate({ path: "user", select: "-password" }), query)
@@ -26,13 +27,39 @@ const getAdminById = async (id) => {
   return result;
 };
 
-const updateAdmin = async (user, payload) => {
-  const userInfo = await User.findById(user?.id);
-  if (!userInfo) {
-    throw new Error("User not found");
+const updateAdmin = async (files, user, payload) => {
+  const isAdminExist = await Admin.findOne({ user: user.id });
+  if (!isAdminExist) {
+    throw new Error("Admin not found");
   }
-  const result = await Admin.findOneAndUpdate({ user: user.id }, payload, {
-    runValidators: true,
+
+  if (files?.profileImage?.length) {
+    const imageName = `${payload?.name}|profileImage|${Date.now()}`;
+    const { secure_url } = await sendFileToCloudinary(imageName, files.profileImage[0].path);
+    payload.personalInfoSchema.profileImage = secure_url;
+  }
+  if (files?.bannerImage?.length) {
+    const imageName = `${payload?.name}|bannerImage|${Date.now()}`;
+    const { secure_url } = await sendFileToCloudinary(imageName, files.bannerImage[0].path);
+    payload.personalInfoSchema.bannerImage = secure_url;
+  }
+  if (files?.secondaryProfileImage?.length) {
+    const imageName = `${payload?.name}|secondaryProfileImage|${Date.now()}`;
+    const { secure_url } = await sendFileToCloudinary(imageName, files.secondaryProfileImage[0].path);
+    payload.personalInfoSchema.secondaryProfileImage = secure_url;
+  }
+  if (files?.logo?.length) {
+    const imageName = `${payload?.name}|logo|${Date.now()}`;
+    const { secure_url } = await sendFileToCloudinary(imageName, files.logo[0].path);
+    payload.personalInfoSchema.logo = secure_url;
+  }
+  if (files?.logoBW?.length) {
+    const imageName = `${payload?.name}|logoBW|${Date.now()}`;
+    const { secure_url } = await sendFileToCloudinary(imageName, files.logoBW[0].path);
+    payload.personalInfoSchema.logoBW = secure_url;
+  }
+
+  const result = await Admin.findByIdAndUpdate(id, payload, {
     new: true,
   });
   return result;
